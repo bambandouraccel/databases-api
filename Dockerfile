@@ -1,11 +1,13 @@
 # Étape de build
-FROM maven:3.8.6-eclipse-temurin-17 AS builder
+#FROM maven:3.8.6-eclipse-temurin-17 AS builder
+FROM openjdk:17-jdk AS builder
 WORKDIR /build
 COPY . .
 RUN mvn clean package -DskipTests
 
 # Étape d'exécution
-FROM eclipse-temurin:17-jre-jammy AS runtime
+#FROM eclipse-temurin:17-jre-jammy AS runtime
+FROM openjdk:17-jdk
 WORKDIR /app
 
 # Create a non-root user for OpenShift
